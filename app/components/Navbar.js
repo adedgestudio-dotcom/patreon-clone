@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -58,7 +59,7 @@ const Navbar = () => {
   //   );
   // }
   return (
-    <nav className="bg-gray-900 text-white flex justify-between px-4 h-16 items-center">
+    <nav className="bg-[var(--color-card)] border-b border-[var(--color-border)] text-[var(--color-text)] flex justify-between px-4 h-16 items-center">
       <div className="logo font-bold text-lg flex items-center justify-center cursor-pointer">
         <Link
           href="/"
@@ -78,12 +79,13 @@ const Navbar = () => {
       </ul> */}
 
       {session && (
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-3 items-center">
+          <ThemeSwitcher />
           {/* Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={handleDropdownToggle}
-              className="inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600"
+              className="inline-flex items-center justify-center text-white bg-[var(--color-primary)] font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:opacity-80 hover:ring-2 hover:ring-[var(--color-accent)]"
             >
               Welcome {session?.user?.email || "User"}
               <svg
@@ -109,14 +111,14 @@ const Navbar = () => {
               id="dropdownDelay"
               className={`z-10 ${
                 showDropdown ? "block" : "hidden"
-              } absolute right-0 mt-2 bg-gray-900  border border-gray-200 rounded-lg shadow-lg w-44`}
+              } absolute right-0 mt-2 bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg shadow-lg w-44`}
             >
-              <ul className="p-2 text-sm text-white font-medium">
+              <ul className="p-2 text-sm text-[var(--color-text)] font-medium">
                 <li>
                   <Link
                     href="/"
                     onClick={() => handleLinkClick("/")}
-                    className="block px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block px-4 py-2 hover:bg-[var(--color-primary)] hover:bg-opacity-20 rounded"
                   >
                     Home
                   </Link>
@@ -125,7 +127,7 @@ const Navbar = () => {
                   <Link
                     href="/dashboard"
                     onClick={() => handleLinkClick("/dashboard")}
-                    className="block px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block px-4 py-2 hover:bg-[var(--color-primary)] hover:bg-opacity-20 rounded"
                   >
                     Dashboard
                   </Link>
@@ -134,7 +136,7 @@ const Navbar = () => {
                   <Link
                     href="#"
                     onClick={() => handleLinkClick("#")}
-                    className="block px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block px-4 py-2 hover:bg-[var(--color-primary)] hover:bg-opacity-20 rounded"
                   >
                     Settings
                   </Link>
@@ -142,7 +144,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleYourPageClick}
-                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block w-full text-left px-4 py-2 hover:bg-[var(--color-primary)] hover:bg-opacity-20 rounded"
                   >
                     Your page
                   </button>
@@ -153,7 +155,7 @@ const Navbar = () => {
                       handleLinkClick("signout");
                       signOut();
                     }}
-                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block w-full text-left px-4 py-2 hover:bg-[var(--color-primary)] hover:bg-opacity-20 rounded"
                   >
                     Sign out
                   </button>
@@ -165,7 +167,7 @@ const Navbar = () => {
           {/* Direct buttons */}
 
           <button
-            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600"
+            className="text-white bg-[var(--color-primary)] font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:opacity-80 hover:ring-2 hover:ring-[var(--color-accent)]"
             onClick={() => {
               signOut();
             }}
@@ -175,13 +177,14 @@ const Navbar = () => {
         </div>
       )}
       {!session && (
-        <Link href={"/login"}>
-          <div className="login">
-            <button className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600">
+        <div className="flex gap-3 items-center">
+          <ThemeSwitcher />
+          <Link href={"/login"}>
+            <button className="text-white bg-[var(--color-primary)] font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:opacity-80 hover:ring-2 hover:ring-[var(--color-accent)]">
               Login
             </button>
-          </div>
-        </Link>
+          </Link>
+        </div>
       )}
     </nav>
   );
