@@ -13,12 +13,12 @@ const Login = () => {
     }
   }, [session, router]);
   return (
-    <div className="text-white container mx-auto py-14">
-      <h1 className=" text-3xl font-bold text-center ">
+    <div className="text-[var(--color-text)] container mx-auto py-14">
+      <h1 className="text-3xl font-bold text-center">
         Sign In to Your Creator Space
       </h1>
 
-      <div className="flex flex-col gap-2 min-h-screen items-center  p-10">
+      <div className="flex flex-col gap-2 min-h-screen items-center p-10">
         <button className="flex items-center w-64 bg-slate-50 text-black border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
           <svg
             className="h-6 w-6 mr-2"

@@ -161,39 +161,29 @@ const PaymentPage = ({ username }) => {
           />
         </div>
       </div>
-      <div className="info my-16 flex flex-col items-center justify-center text-white px-4">
+      <div className="info my-16 flex flex-col items-center justify-center text-[var(--color-text)] px-4">
         <h1 className="text-4xl font-bold mb-4 mt-2">@{username}</h1>
-        <p className="text-xl text-gray-300 mb-6">
+        <p className="text-xl opacity-80 mb-6">
           Lets help {username} get a chai!
         </p>
         <div className="flex gap-6 text-center">
-          <div className=" px-4 py-2 ">
-            <div className="text-2xl font-bold">
-              {stats.totalMembers || 0}
-              {/* Number of supporters joined */}
-            </div>
-
-            <div className="text-sm text-gray-400">supporters</div>
+          <div className="px-4 py-2">
+            <div className="text-2xl font-bold">{stats.totalMembers || 0}</div>
+            <div className="text-sm opacity-60">supporters</div>
           </div>
-          <div className=" px-4 py-2 ">
-            <div className="text-2xl font-bold">
-              {stats.totalPayments || 0}
-              {/* Total count of payments/donations received */}
-            </div>
-
-            <div className="text-sm text-gray-400">payments</div>
+          <div className="px-4 py-2">
+            <div className="text-2xl font-bold">{stats.totalPayments || 0}</div>
+            <div className="text-sm opacity-60">payments</div>
           </div>
-          <div className=" px-4 py-2 ">
-            <div className="text-2xl font-bold text-green-400">
+          <div className="px-4 py-2">
+            <div className="text-2xl font-bold text-[var(--color-accent)]">
               ₹{stats.totalEarnings ? stats.totalEarnings.toLocaleString() : 0}
-              {/* Total money earned from all payments (formatted with commas) */}
             </div>
-
-            <div className="text-sm text-gray-400">total raised</div>
+            <div className="text-sm opacity-60">total raised</div>
           </div>
         </div>
         <div className="payment flex gap-3 w-[80%] mt-11">
-          <div className="supporters w-1/2 bg-slate-900 rounded-lg p-10 ">
+          <div className="supporters w-1/2 bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg p-10">
             <h2 className="text-2xl font-bold my-5">Supporters</h2>
             {/* show list of supporters on leaderboard */}
             <ul>
@@ -216,7 +206,7 @@ const PaymentPage = ({ username }) => {
               })}
             </ul>
           </div>
-          <div className="make-payment supporters w-1/2 bg-slate-900 rounded-lg p-10">
+          <div className="make-payment supporters w-1/2 bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg p-10">
             <h2 className="text-2xl font-bold my-5 text-center">
               Make a payment
             </h2>
@@ -227,7 +217,7 @@ const PaymentPage = ({ username }) => {
                 name="name"
                 type="text"
                 placeholder="Name"
-                className="w-full p-2 rounded-md bg-slate-800 text-white"
+                className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)]"
               />
               <input
                 onChange={handleChange}
@@ -235,7 +225,7 @@ const PaymentPage = ({ username }) => {
                 name="message"
                 type="text"
                 placeholder="Enter message"
-                className="w-full p-2 rounded-md bg-slate-800 text-white mt-3"
+                className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3"
               />
               <input
                 onChange={handleChange}
@@ -243,11 +233,11 @@ const PaymentPage = ({ username }) => {
                 name="amount"
                 type="number"
                 placeholder="Enter amount"
-                className="w-full p-2 rounded-md bg-slate-800 text-white mt-3"
+                className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3"
               />
               <button
-                onClick={() => pay(Number.parseInt(paymentform.amount) * 100)} // Razorpay expects amount in paise(this code converts into rupees )
-                className="inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-900 to-blue-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-400 mt-3 w-full disabled:bg-gray-700 disabled:from-purple-600 disabled:text-gray-400 disabled:cursor-not-allowed disabled:opacity-60 "
+                onClick={() => pay(Number.parseInt(paymentform.amount) * 100)}
+                className="inline-flex items-center justify-center text-white bg-[var(--color-primary)] font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:opacity-80 hover:ring-2 hover:ring-[var(--color-accent)] mt-3 w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={
                   paymentform.name?.length < 3 ||
                   paymentform.message?.length < 4
@@ -262,20 +252,20 @@ const PaymentPage = ({ username }) => {
               <h3 className="my-1">or choose an amount</h3>
               <div className="flex gap-3">
                 <button
-                  onClick={() => pay(2000)} // ₹20 in paise
-                  className="w-full p-2 rounded-md bg-slate-800 text-white mt-3 hover:bg-slate-700 cursor-pointer"
+                  onClick={() => pay(2000)}
+                  className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3 hover:bg-[var(--color-primary)] hover:bg-opacity-20 cursor-pointer"
                 >
                   ₹20
                 </button>
                 <button
-                  onClick={() => pay(5000)} // ₹50 in paise
-                  className="w-full p-2 rounded-md bg-slate-800 text-white mt-3 hover:bg-slate-700 cursor-pointer"
+                  onClick={() => pay(5000)}
+                  className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3 hover:bg-[var(--color-primary)] hover:bg-opacity-20 cursor-pointer"
                 >
                   ₹50
                 </button>
                 <button
-                  onClick={() => pay(10000)} // ₹100 in paise
-                  className="w-full p-2 rounded-md bg-slate-800 text-white mt-3 hover:bg-slate-700 cursor-pointer"
+                  onClick={() => pay(10000)}
+                  className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3 hover:bg-[var(--color-primary)] hover:bg-opacity-20 cursor-pointer"
                 >
                   ₹100
                 </button>
@@ -285,10 +275,10 @@ const PaymentPage = ({ username }) => {
             <div className="pay-methods mt-5">
               <h3 className="text-xl font-bold my-5">Payment methods</h3>
               <div className="flex gap-3">
-                <button className="w-full p-2 rounded-md bg-slate-800 text-white mt-3">
+                <button className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3 hover:bg-[var(--color-primary)] hover:bg-opacity-20">
                   Pay with Debit/Credit Card
                 </button>
-                <button className="w-full p-2 rounded-md bg-slate-800 text-white mt-3">
+                <button className="w-full p-2 rounded-md bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] mt-3 hover:bg-[var(--color-primary)] hover:bg-opacity-20">
                   Pay with UPI
                 </button>
               </div>
