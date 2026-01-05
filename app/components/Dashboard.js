@@ -6,17 +6,23 @@ import { fetchUser, updateProfile } from "@/actions/useractions";
 import { toast, Bounce } from "react-toastify";
 
 const Dashboard = () => {
-  const { data: session, update } = useSession();
+  const { data: session, status, update } = useSession();
   const router = useRouter();
   const [form, setForm] = useState({ name: "" });
 
   useEffect(() => {
-    if (session) {
-      getData();
-    } else {
+    if (status === "loading") return; // Wait for session to load
+
+    if (status === "unauthenticated") {
       router.push("/login"); // if user is not logged in it will redirect to login page
+    } else if (session?.user?.name) {
+      const fetchData = async () => {
+        let u = await fetchUser(session.user.name);
+        setForm(u);
+      };
+      fetchData();
     }
-  }, [session, router]);
+  }, [session, status, router]);
 
   const getData = async () => {
     if (session?.user?.name) {
@@ -47,6 +53,22 @@ const Dashboard = () => {
       });
     }
   };
+
+  // Show loading state while session is loading
+  if (status === "loading") {
+    return (
+      <div className="container mx-auto py-5">
+        <h1 className="text-center my-5 font-bold text-3xl text-white">
+          Loading...
+        </h1>
+      </div>
+    );
+  }
+
+  // Don't render if not authenticated
+  if (!session?.user) {
+    return null;
+  }
 
   return (
     <>

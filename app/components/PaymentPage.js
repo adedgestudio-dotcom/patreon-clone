@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 
 const PaymentPage = ({ username }) => {
-  const [paymentform, setpaymentform] = useState({});
+  const [paymentform, setpaymentform] = useState({name: "", message: "", amount: ""});
   const { data: session } = useSession();
   const [currentUser, setcurrentUser] = useState({});
   const [payments, setpayments] = useState([]);
