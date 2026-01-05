@@ -42,9 +42,13 @@ const Navbar = () => {
     e.preventDefault();
     if (session?.user) {
       const username = session.user.username || session.user.name;
-      console.log("Navigating to user page:", username);
-      setShowDropdown(false);
-      router.push(`/${username}`);
+      if (username) {
+        console.log("Navigating to user page:", username);
+        setShowDropdown(false);
+        router.push(`/${username}`);
+      } else {
+        console.error("Username is undefined");
+      }
     }
   };
 
