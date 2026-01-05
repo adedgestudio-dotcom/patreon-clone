@@ -1,29 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  --color-bg: #00091d;
-  --color-bgPattern: #001233;
-  --color-text: #ffffff;
-  --color-primary: #8b5cf6;
-  --color-secondary: #a78bfa;
-  --color-accent: #c4b5fd;
-  --color-card: #1e1b4b;
-  --color-border: #7c3aed;
-}
-
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-.themed-bg {
-  background-color: var(--color-bg);
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 1px,
-    transparent 1px
-  );
-  background-size: 20px 20px;
+  background-color: #00091d;
+  color: white;
 }
 
 .invertImg {

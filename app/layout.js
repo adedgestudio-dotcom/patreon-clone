@@ -1,9 +1,19 @@
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./components/SessionWrapper";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ToastProvider from "./components/ToastProvider";
-import { ThemeProvider } from "./context/ThemeContext";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Get me a chai - Fund your projects with chai",
@@ -13,15 +23,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="themed-bg text-[var(--color-text)] transition-colors duration-300">
-        <ThemeProvider>
-          <SessionWrapper>
-            <Navbar />
-            <div className="min-h-screen themed-bg">{children}</div>
-            <Footer />
-            <ToastProvider />
-          </SessionWrapper>
-        </ThemeProvider>
+      <body className="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] text-white">
+        <SessionWrapper>
+          <Navbar />
+          <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] text-white">
+            {children}
+          </div>
+          <Footer />
+          <ToastProvider />
+        </SessionWrapper>
       </body>
     </html>
   );

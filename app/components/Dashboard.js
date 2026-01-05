@@ -28,6 +28,7 @@ const Dashboard = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     if (session?.user?.name) {
       update();
@@ -50,7 +51,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="container mx-auto py-5">
-        <h1 className="text-center my-5 font-bold text-3xl text-[var(--color-text)]">
+        <h1 className="text-center my-5 font-bold text-3xl text-white">
           Welcome to my Dashboard
         </h1>
         <form className="max-w-2xl mx-auto" action={handleSubmit}>
@@ -58,7 +59,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="name"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               Name
             </label>
@@ -68,7 +69,7 @@ const Dashboard = () => {
               type="text"
               name="name"
               id="name"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -76,7 +77,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="email"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               Email
             </label>
@@ -86,14 +87,14 @@ const Dashboard = () => {
               type="text"
               name="email"
               id="email"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
           {/* username */}
           <div className="my-2">
             <label
               htmlFor="username"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               username
             </label>
@@ -103,7 +104,7 @@ const Dashboard = () => {
               type="text"
               name="username"
               id="username"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -111,7 +112,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="profilepicture"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               Profile Picture
             </label>
@@ -121,7 +122,7 @@ const Dashboard = () => {
               type="text"
               name="profilepicture"
               id="profilepicture"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -129,7 +130,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="CoverPicture"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               cover picture
             </label>
@@ -139,7 +140,7 @@ const Dashboard = () => {
               type="text"
               name="coverpicture"
               id="coverpicture"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -147,7 +148,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="username"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               Razorpay Id
             </label>
@@ -157,7 +158,7 @@ const Dashboard = () => {
               type="text"
               name="razorpayid"
               id="razorpayid"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -165,7 +166,7 @@ const Dashboard = () => {
           <div className="my-2">
             <label
               htmlFor="razorpaysecret"
-              className="block mb-2 text-sm font-medium text-[var(--color-text)]"
+              className="block mb-2 text-sm font-medium text-white"
             >
               Razorpay Secret
             </label>
@@ -175,10 +176,10 @@ const Dashboard = () => {
               type="text"
               name="razorpaysecret"
               id="razorpaysecret"
-              className="block w-full p-2 text-[var(--color-text)] border border-[var(--color-border)] rounded-lg bg-[var(--color-card)] text-xs focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
+              className="block w-full p-2 text-white border border-gray-900 rounded-lg bg-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          <button className="inline-flex items-center justify-center text-white bg-[var(--color-primary)] font-medium rounded-lg text-lg px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:opacity-80 hover:ring-2 hover:ring-[var(--color-accent)] mt-3 w-full">
+          <button className="inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-900 to-blue-800 font-medium rounded-lg text-lg px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-400 mt-3 w-full">
             Save
           </button>
         </form>
