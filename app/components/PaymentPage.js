@@ -13,7 +13,11 @@ import { toast } from "react-toastify";
 import { useSearchParams } from "next/navigation";
 
 const PaymentPage = ({ username }) => {
-  const [paymentform, setpaymentform] = useState({name: "", message: "", amount: ""});
+  const [paymentform, setpaymentform] = useState({
+    name: "",
+    message: "",
+    amount: "",
+  });
   const { data: session } = useSession();
   const [currentUser, setcurrentUser] = useState({});
   const [payments, setpayments] = useState([]);
@@ -109,6 +113,11 @@ const PaymentPage = ({ username }) => {
         return;
       }
 
+      if (!currentUser.razorpayid) {
+        toast.error("Payment not configured. Please contact the creator.");
+        return;
+      }
+
       //get order id
       let order_id = await initiate(amount, username, paymentform);
 
@@ -150,14 +159,14 @@ const PaymentPage = ({ username }) => {
       <div className="cover relative">
         <img
           className="h-[300] w-full object-cover"
-          src={currentUser?.coverpicture}
-          alt=""
+          src={currentUser?.coverpicture || "/tea.gif"}
+          alt="Cover"
         />
         <div className="image-profile absolute -bottom-16 right-[45.5%]">
           <img
             className="rounded-xl ring-2 ring-gray-800 w-[130px] h-[130px]"
-            src={currentUser?.profilepicture}
-            alt=""
+            src={currentUser?.profilepicture || "/avatar.gif"}
+            alt="Profile"
           />
         </div>
       </div>
