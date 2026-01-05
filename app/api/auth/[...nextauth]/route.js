@@ -3,7 +3,6 @@ import GitHubProvider from "next-auth/providers/github";
 import mongoose from "mongoose";
 import User from "../../../models/user";
 
-
 export const authOptions = NextAuth({
   providers: [
     // OAuth authentication providers...
@@ -35,8 +34,8 @@ export const authOptions = NextAuth({
       // Check if the login provider is GitHub
       if (account.provider === "github") {
         try {
-          // 🔌 Connect to MongoDB database named "chai"
-          await mongoose.connect("mongodb://localhost:27017/chai");
+          // 🔌 Connect to MongoDB database
+          await mongoose.connect(process.env.MONGODB_URI);
 
           // 🔍 Check if user already exists in DB using email
           const currentUser = await User.findOne({ email: user.email });
@@ -79,7 +78,7 @@ export const authOptions = NextAuth({
 
       try {
         // 🔌 Connect to MongoDB again
-        await mongoose.connect("mongodb://localhost:27017/chai");
+        await mongoose.connect(process.env.MONGODB_URI);
 
         // 🔍 Find user from DB using session email
         const dbUser = await User.findOne({ email: session.user.email }); //db-database
