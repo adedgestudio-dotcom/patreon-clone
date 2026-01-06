@@ -243,10 +243,14 @@ const PaymentPage = ({ username }) => {
               />
               <button
                 onClick={() => pay(Number.parseInt(paymentform.amount) * 100)}
-                className="inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-900 to-blue-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-400 mt-3 w-full disabled:bg-gray-700 disabled:from-purple-600 disabled:text-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-900 to-blue-800 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-400 mt-3 w-full disabled:bg-gray-700 disabled:from-gray-700 disabled:to-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={
-                  paymentform.name?.length < 3 ||
-                  paymentform.message?.length < 4
+                  !paymentform.name ||
+                  paymentform.name.length < 3 ||
+                  !paymentform.message ||
+                  paymentform.message.length < 4 ||
+                  !paymentform.amount ||
+                  paymentform.amount <= 0
                 }
               >
                 Pay
