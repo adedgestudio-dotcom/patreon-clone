@@ -24,17 +24,19 @@ export default function Home() {
         <p>Unleash the power of your fans and get your projects funded.</p>
 
         <div className="button flex gap-2">
-          <Link href={"/about"}>
+          <Link href={"/login"}>
             <button className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600">
               Start Here
             </button>
           </Link>
 
-          <button className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-            <span className="relative px-4 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent leading-5">
-              Learn more
-            </span>
-          </button>
+          <Link href={"/about"}>
+            <button className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+              <span className="relative px-4 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent leading-5">
+                Learn more
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
       <div className="line-divider bg-white h-1 opacity-10"></div>
