@@ -10,10 +10,6 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const router = useRouter();
 
-  // Debug logging
-  console.log("Session user:", session?.user);
-  console.log("Username for navigation:", session?.user?.name);
-
   // Handle click outside dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,7 +29,6 @@ const Navbar = () => {
   };
 
   const handleLinkClick = (href) => {
-    console.log("Link clicked:", href);
     // Close dropdown when a link is clicked
     setShowDropdown(false);
   };
@@ -43,7 +38,6 @@ const Navbar = () => {
     if (session?.user) {
       const username = session.user.username || session.user.name;
       if (username) {
-        console.log("Navigating to user page:", username);
         setShowDropdown(false);
         router.push(`/${username}`);
       } else {
@@ -53,7 +47,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white flex justify-between px-4 h-16 items-center">
+    <nav className="bg-gray-900 text-white flex justify-between px-4 md:h-16 flex-col md:flex-row items-center">
       <div className="logo font-bold text-lg flex items-center justify-center cursor-pointer">
         <Link
           href="/"
@@ -61,12 +55,12 @@ const Navbar = () => {
           className="flex items-center justify-center"
         >
           <img className="invertImg" width={44} src="tea.gif" alt="" />
-          <span>GetMeAChai!</span>
+          <span className="text-xl md:text-base ">GetMeAChai!</span>
         </Link>
       </div>
 
       {session && (
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center flex-col md:flex-row">
           {/* Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
@@ -130,7 +124,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleYourPageClick}
-                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
+                    className="block w-full  text-left px-4 py-2 hover:bg-gray-100 hover:text-gray-950 rounded"
                   >
                     Your page
                   </button>
@@ -152,7 +146,7 @@ const Navbar = () => {
 
           {/* Direct buttons */}
           <button
-            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600"
+            className=" w-full md:w-fit text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center leading-5 transition-all duration-200 hover:bg-gray-800 hover:bg-none hover:ring-2 hover:ring-purple-600"
             onClick={() => {
               signOut();
             }}

@@ -26,9 +26,6 @@ export async function POST(req) {
     );
 
     if (isValid) {
-      console.log("Payment verification successful, updating database...");
-      console.log("Order ID:", razorpay_order_id);
-
       // Update payment status in database
       const updatedPayment = await payment.findOneAndUpdate(
         { order_id: razorpay_order_id },
@@ -39,8 +36,6 @@ export async function POST(req) {
         },
         { new: true }
       );
-
-      console.log("Updated payment:", updatedPayment);
 
       if (!updatedPayment) {
         console.error(
@@ -55,7 +50,6 @@ export async function POST(req) {
         new URL(`/${updatedPayment.to_username}?payment=success`, req.url)
       );
     } else {
-      console.log("Payment verification failed");
       // Get payment record for failed payment redirect
       const paymentRecord = await payment.findOne({
         order_id: razorpay_order_id,

@@ -27,10 +27,6 @@ export const authOptions = NextAuth({
   callbacks: {
     // ✅ This function runs WHEN a user tries to sign in
     async signIn({ user, account }) {
-      // Just printing data in terminal for debugging
-      console.log("SignIn callback - User:", user);
-      console.log("SignIn callback - Account:", account);
-
       // Check if the login provider is GitHub
       if (account.provider === "github") {
         try {
@@ -39,7 +35,6 @@ export const authOptions = NextAuth({
 
           // 🔍 Check if user already exists in DB using email
           const currentUser = await User.findOne({ email: user.email });
-          console.log("Current user from DB:", currentUser);
 
           // ❓ If user NOT found in DB
           if (!currentUser) {
@@ -51,8 +46,6 @@ export const authOptions = NextAuth({
 
             // 💾 Save new user to database
             await newUser.save();
-
-            console.log("New user created:", newUser);
           }
 
           // ✅ Allow user to sign in
@@ -72,17 +65,12 @@ export const authOptions = NextAuth({
 
     // ✅ This function runs AFTER login, every time session is checked
     async session({ session, token }) {
-      // Debug logs
-      console.log("Session callback - Session:", session);
-      console.log("Session callback - Token:", token);
-
       try {
         // 🔌 Connect to MongoDB again
         await mongoose.connect(process.env.MONGODB_URI);
 
         // 🔍 Find user from DB using session email
         const dbUser = await User.findOne({ email: session.user.email }); //db-database
-        console.log("DB User in session:", dbUser);
 
         // ❓ If user exists in DB
         if (dbUser) {
@@ -94,9 +82,6 @@ export const authOptions = NextAuth({
         // ❌ If DB fails, just log error (don't crash app)
         console.error("Session callback error:", error);
       }
-
-      // 📦 Final session object sent to frontend
-      console.log("Final session:", session);
 
       // 🔁 Return updated session
       return session;

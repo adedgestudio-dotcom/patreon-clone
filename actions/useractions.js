@@ -65,8 +65,6 @@ export const getUserByUsername = async (username) => {
 export const fetchPayments = async (username) => {
   await connectDb();
 
-  console.log("Fetching payments for username:", username);
-
   //find all completed payments sorted by decreasing order of amount
   let payments = await payment
     .find({
@@ -74,10 +72,8 @@ export const fetchPayments = async (username) => {
       status: "completed", // Only show completed payments
     })
     .sort({ amount: -1 })
+    .limit(10) // Show only top 10 payments
     .lean();
-
-  console.log("Found payments:", payments.length);
-  console.log("Payment details:", payments);
 
   // Convert ObjectIds to strings for serialization
   return payments.map((payment) => ({
@@ -88,8 +84,6 @@ export const fetchPayments = async (username) => {
 
 export const fetchPaymentStats = async (username) => {
   await connectDb();
-
-  console.log("Fetching payment stats for username:", username);
 
   // Get all completed payments for the user
   let payments = await payment
@@ -108,8 +102,6 @@ export const fetchPaymentStats = async (username) => {
     payments.map((p) => p.name.toLowerCase().trim())
   );
   const totalMembers = uniqueSupporters.size;
-
-  console.log("Payment stats:", { totalMembers, totalPayments, totalEarnings });
 
   return {
     totalMembers,

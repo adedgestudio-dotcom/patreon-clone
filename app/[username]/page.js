@@ -5,6 +5,14 @@ import { notFound } from "next/navigation";
 import user from "../models/user";
 import connectDb from "@/db/connectDb";
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  return {
+    title: `Support @${resolvedParams.username} - Get Me A Chai`,
+    description: `Support ${resolvedParams.username} by buying them a chai. Show your appreciation for their work.`,
+  };
+}
+
 const Username = async ({ params }) => {
   //if the username is not present in database show 404page
   const resolvedParams = await params;
