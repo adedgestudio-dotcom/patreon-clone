@@ -40,7 +40,7 @@ const PaymentPage = ({ username }) => {
 
       if (paymentStatus === "success") {
         toast.success("Payment Successful! Thank you for your support😊", {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -50,7 +50,7 @@ const PaymentPage = ({ username }) => {
         getData();
       } else if (paymentStatus === "failed") {
         toast.error("❌ Payment failed. Please try again.", {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -59,7 +59,7 @@ const PaymentPage = ({ username }) => {
         });
       } else if (paymentStatus === "error") {
         toast.error("⚠️ Payment error occurred. Please contact support.", {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -93,17 +93,23 @@ const PaymentPage = ({ username }) => {
   const pay = async (amount) => {
     try {
       if (!paymentform.name || paymentform.name.trim().length < 3) {
-        toast.error("Please enter a valid name (at least 3 characters)");
+        toast.error("Please enter a valid name (at least 3 characters)", {
+          position: "bottom-right",
+        });
         return;
       }
 
       if (!paymentform.message || paymentform.message.trim().length < 4) {
-        toast.error("Please enter a message (at least 4 characters)");
+        toast.error("Please enter a message (at least 4 characters)", {
+          position: "bottom-right",
+        });
         return;
       }
 
       if (!currentUser.razorpayid) {
-        toast.error("Payment not configured. Please contact the creator.");
+        toast.error("Payment not configured. Please contact the creator.", {
+          position: "bottom-right",
+        });
         return;
       }
 
@@ -135,7 +141,9 @@ const PaymentPage = ({ username }) => {
       rzp1.open();
     } catch (error) {
       console.error("Payment error:", error);
-      toast.error("Payment initialization failed. Please try again.");
+      toast.error("Payment initialization failed. Please try again.", {
+        position: "bottom-right",
+      });
     }
   };
 
